@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #C1824D;
+}
+
+.main-container {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 5px;
+}
+
+.container {
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: #fff;
+}
+
+.left-column {
+    flex: 0 0 200px;
+}
+
+.right-column {
+    flex: 0 0 200px;
+}
+
+.center-column {
+    flex: 1 1 600px;
+}
+
+.description-container {
+    flex: 1 0 350px;
+}
+
+.command-container {
+    flex: 1 0 50px;
+}
+
+.map-container {
+    flex: 1 0 200px;
+}
+
+.inventory-container {
+    flex: 1 0 200px;
+}
+
+.keywords-container {
+    flex: 1 0 400px;
+}
