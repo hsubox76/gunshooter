@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/main.scss';
 import 'font-awesome/css/font-awesome.css';
-import DescriptionContainer from './components/DescriptionContainer';
+import LogContainer from './components/LogContainer';
+import RoomContainer from './components/RoomContainer';
 import InventoryContainer from './components/InventoryContainer';
 import ActionsContainer from './components/ActionsContainer';
 import CommandLineContainer from './components/CommandLineContainer';
@@ -17,7 +18,8 @@ class App extends React.Component {
         </div>
         <div className="column center-column">
           <CommandLineContainer />
-          <DescriptionContainer />
+          <RoomContainer />
+          <LogContainer />
         </div>
         <div className="column right-column">
           <ActionsContainer />

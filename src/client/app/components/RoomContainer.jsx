@@ -4,26 +4,28 @@ import Container from './Container';
 
 function mapStateToProps(state) {
  return {
-     roomsById: state.roomsById,
+     rooms: state.rooms,
      currentRoomId: state.currentRoomId
  };
 }
 
-class DescriptionContainer extends Component {
+class RoomContainer extends Component {
     render() {
-        const currentRoom = this.props.roomsById[this.props.currentRoomId];
+        const currentRoom = this.props.rooms[this.props.currentRoomId];
         return (
             <Container
-                id="description"
+                id="room"
                 displayName={currentRoom.title}>
-                <div className="description-content">{currentRoom.description}</div>
+                <div className="room-content">
+                    <div>{currentRoom.description}</div>
+                </div>
             </Container>
         );
     }
 }
 
-DescriptionContainer.propTypes = {
+RoomContainer.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(DescriptionContainer);
+export default connect(mapStateToProps)(RoomContainer);

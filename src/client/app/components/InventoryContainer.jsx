@@ -16,6 +16,13 @@ function mapDispatchToActions(dispatch) {
 }
 
 class InventoryContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.onItemClick = this.onItemClick.bind(this);
+    }
+    onItemClick(itemWord) {
+        this.props.actions.addCommandWord(_.extend({}, itemWord, { wordType: 'item' }))
+    }
     render() {
         return (
             <Container
@@ -25,7 +32,7 @@ class InventoryContainer extends Component {
                     return (
                         <div
                             className="inventory-item"
-                            onClick={_.wrap(item, this.props.actions.addCommandWord)}
+                            onClick={_.wrap(item, this.onItemClick)}
                             key={item.word}>
                                 {item.article} {item.word}
                         </div>

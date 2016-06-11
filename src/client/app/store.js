@@ -24,7 +24,8 @@ const items = [
 
 const startingActions = [
     {
-        word: 'examine',
+        word: 'look',
+        preposition: 'at',
         clickable: true,
         visible: true
     },
@@ -41,10 +42,11 @@ const startingActions = [
 ];
 
 const initialStore = {
-    roomsById: _.map(rooms, (room, index) => { return _.extend({}, room, {id: index}); }),
+    rooms: _.map(rooms, (room, index) => { return _.extend({}, room, {id: index}); }),
     currentRoomId: 0,
     actions: startingActions,
     inventory: [items[0], items[1]],
+    log: [],
     commandLine: []
 };
 
