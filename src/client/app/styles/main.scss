@@ -64,8 +64,36 @@ body {
     }
 }
 
-.command-container {
-    flex: 1 0 50px;
+.command-line-container {
+    flex: 1 0 30px;
+    display: flex;
+    flex-direction: row;
+    
+    .prompt-text {
+        flex: 0 0 110px;
+        border: 1px solid #aaa;
+        padding: 5px;
+        height: 15px;
+        margin: 5px;
+        background-color: #eee;
+    }
+    
+    .command-line {
+        padding: 5px;
+        height: 15px;
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+        
+        .command-line-word {
+            margin: 0 3px;
+        }
+        
+        &.empty {
+            font-style: italic;
+            color: #999;    
+        }
+    }
 }
 
 .map-container {
@@ -80,10 +108,10 @@ body {
     }
 }
 
-.keywords-container {
+.actions-container {
     flex: 1 0 400px;
     
-    .keyword-command {
+    .actions-word {
         margin: 5px;
     }
 }

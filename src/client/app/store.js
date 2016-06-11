@@ -11,18 +11,18 @@ const rooms = [
 
 const items = [
     {
-        name: 'gun',
+        word: 'gun',
         article: 'a',
         description: 'It is a gun, the kind that you shoot people with.'
     },
     {
-        name: 'hat',
+        word: 'hat',
         article: 'a',
         description: 'It looks like a fedora.'
     }
 ];
 
-const startingCommands = [
+const startingActions = [
     {
         word: 'examine',
         clickable: true,
@@ -43,8 +43,9 @@ const startingCommands = [
 const initialStore = {
     roomsById: _.map(rooms, (room, index) => { return _.extend({}, room, {id: index}); }),
     currentRoomId: 0,
-    commands: startingCommands,
-    inventory: [items[0], items[1]]
+    actions: startingActions,
+    inventory: [items[0], items[1]],
+    commandLine: []
 };
 
 export default createStore(mainReducer, initialStore);

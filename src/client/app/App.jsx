@@ -4,7 +4,8 @@ import './styles/main.scss';
 import 'font-awesome/css/font-awesome.css';
 import DescriptionContainer from './components/DescriptionContainer';
 import InventoryContainer from './components/InventoryContainer';
-import KeywordsContainer from './components/KeywordsContainer';
+import ActionsContainer from './components/ActionsContainer';
+import CommandLineContainer from './components/CommandLineContainer';
 
 class App extends React.Component {
   render () {
@@ -15,11 +16,11 @@ class App extends React.Component {
           <div className="container map-container">map container</div>
         </div>
         <div className="column center-column">
+          <CommandLineContainer />
           <DescriptionContainer />
-          <div className="container command-container">command container</div>
         </div>
         <div className="column right-column">
-          <KeywordsContainer />
+          <ActionsContainer />
         </div>
       </div>
     );
