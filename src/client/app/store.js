@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { mainReducer } from './reducers';
 import _ from 'lodash';
 
@@ -72,18 +73,27 @@ const items = [
 
 const startingActions = [
     {
+        id: 1,
         word: 'look',
-        preposition: 'at',
         clickable: true,
         visible: true
     },
     {
-        word: 'pick up',
+        id: 2,
+        word: 'take',
         clickable: true,
         visible: true
     },
     {
+        id: 3,
         word: 'shoot',
+        clickable: true,
+        visible: true
+    },
+    {
+        id: 4,
+        word: 'use',
+        preposition: 'on',
         clickable: true,
         visible: true
     }
@@ -98,4 +108,4 @@ const initialStore = {
     commandLine: []
 };
 
-export default createStore(mainReducer, initialStore);
+export default createStore(mainReducer, initialStore, applyMiddleware(thunk));

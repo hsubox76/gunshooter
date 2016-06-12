@@ -4,6 +4,10 @@ export function commandLineReducer(state = [], action) {
   switch(action.type) {
       case ACTIONS.ADD_COMMAND_WORD:
         return state.concat(action.word);
+      case ACTIONS.REMOVE_COMMAND_WORD:
+        return state.slice(0, -1);
+      case ACTIONS.CLEAR_COMMAND_LINE:
+        return [];
       default:
         return state;
   }  
@@ -11,11 +15,15 @@ export function commandLineReducer(state = [], action) {
 
 export function logReducer(state = [], action, roomsById) {
     switch(action.type) {
-        case ACTIONS.EXECUTE_COMMAND:
-            const commandLineText = _.map(action.commandLine, (commandLineWord) => {
-                return commandLineWord.word;
+        case ACTIONS.LOG_COMMAND:
+            const commandLineText = _.map(action.commandLine, (commandLineWord, index) => {
+                return commandLineWord.word
+                    + (commandLineWord.preposition && index < action.commandLine.length - 1
+                        ? ' ' + commandLineWord.preposition : '');
             }).join(' ');
-            return state.concat({text: commandLineText + '.'});
+            return state.concat({text: '> ' + commandLineText});
+        case ACTIONS.LOG_TEXT:
+            return state.concat({text: action.text});
         case ACTIONS.CHANGE_ROOM:
             return state.concat({header: roomsById[action.roomId].title, text: roomsById[action.roomId].description});
         default:

@@ -26,7 +26,18 @@ class CommandLineContainer extends Component {
         this.props.actions.changeRoom(1);
     }
     executeCommand() {
-        this.props.actions.executeCommand(this.props.commandLine);
+        const commandLine = this.props.commandLine;
+        this.props.actions.logCommand(commandLine);
+        if (commandLine.length > 1) {
+            const commandWord = commandLine[0];
+            const mainObject = commandLine[1];
+            if (commandWord.word === 'look') {
+                this.props.actions.logText(mainObject.description);
+            } else {
+                this.props.actions.logText('Nothing happens.');
+            }
+        }
+        this.props.actions.clearCommandLine();
     }
     render() {
         const commandLineContent = this.props.commandLine.length === 0
@@ -45,7 +56,10 @@ class CommandLineContainer extends Component {
             <div className="container command-line-container">
                 <div className="prompt-text">What do I do next?</div>
                 {commandLineContent}
-                <div className="execute-button" onClick={this.executeCommand}>
+                <div className="button backspace-button" onClick={this.props.actions.removeCommandWord}>
+                    <span className="fa fa-undo"></span>
+                </div>
+                <div className="button execute-button" onClick={this.executeCommand}>
                     <span className="fa fa-thumbs-up"></span>
                 </div>
             </div>

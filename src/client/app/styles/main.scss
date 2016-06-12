@@ -142,9 +142,8 @@ body {
         background-color: #eee;
     }
     
-    .execute-button {
+    .button {
         flex: 0 0 auto;
-        background-color: mediumseagreen;
         color: #fff;
         font-size: 16px;
         padding: 5px;
@@ -152,6 +151,14 @@ body {
         height: 20px;
         margin: 3px 3px 0 0;
         cursor: pointer;
+    }
+    
+    .execute-button {
+        background-color: mediumseagreen;
+    }
+    
+    .backspace-button {
+        background-color: orangered;
     }
     
     .command-line {
@@ -200,6 +207,10 @@ body {
         display: inline-block;
         border-radius: 5px;
         cursor: pointer;
+        
+        &.inactive {
+            color: #ccc;
+        }
     }
 }
 
@@ -215,5 +226,9 @@ body {
         display: inline-block;
         border-radius: 5px;
         cursor: pointer;
+        
+        &.inactive {
+            color: #ccc;
+        }
     }
 }

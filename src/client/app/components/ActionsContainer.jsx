@@ -7,7 +7,8 @@ import * as Actions from '../actions';
 
 function mapStateToProps(state) {
  return {
-     actionWords: state.actions
+     actionWords: state.actions,
+     commandLine: state.commandLine
  };
 }
 
@@ -29,10 +30,11 @@ class ActionsContainer extends Component {
                 id="actions"
                 displayName="Actions">
                 {_.map(this.props.actionWords, (action) => {
+                    const isInactive = this.props.commandLine.length > 0;
                     return (
                         <div
-                            className="actions-word"
-                            onClick={_.wrap(action, this.onActionWordClick)}
+                            className={"actions-word" + (isInactive ? " inactive" : "")}
+                            onClick={isInactive ? false : _.wrap(action, this.onActionWordClick)}
                             key={action.word}>
                                 {action.word}
                             </div>
