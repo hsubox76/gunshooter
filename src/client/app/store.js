@@ -4,8 +4,30 @@ import _ from 'lodash';
 
 const rooms = [
     {
-        title: 'A Restaurant',
-        description: 'You are in a restaurant.'
+        id: 1,
+        title: 'A Tunnel',
+        description: 'You are in a dark tunnel.',
+        exits: {
+            n: 1,
+            e: 2,
+            w: 3,
+            s: null,
+            u: null,
+            d: null
+        }
+    },
+    {
+        id: 2,
+        title: 'A Dead End',
+        description: 'You are in a dark tunnel.',
+        exits: {
+            n: null,
+            e: null,
+            w: null,
+            s: 1,
+            u: null,
+            d: null
+        }
     }
 ];
 
@@ -42,8 +64,8 @@ const startingActions = [
 ];
 
 const initialStore = {
-    rooms: _.map(rooms, (room, index) => { return _.extend({}, room, {id: index}); }),
-    currentRoomId: 0,
+    roomsById: _.keyBy(rooms, 'id'),
+    currentRoomId: 1,
     actions: startingActions,
     inventory: [items[0], items[1]],
     log: [],

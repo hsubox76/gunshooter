@@ -2,6 +2,7 @@ $bg-color-1: #f6eee6;
 $bg-color-2: #fff;
 $action-word-color: cornflowerblue;
 $item-color: green;
+$direction-button-color: #5DBB73;
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -63,6 +64,48 @@ body {
     
     .room-content {
         margin: 5px;
+    }
+    
+    .room-map {
+        margin: 10px;
+    }
+    
+    .room-cube {
+        position: relative;
+        border: 2px solid #777;
+        width: 80px;
+        height: 80px;
+        
+        .direction-button {
+            position: absolute;
+            font-size: 16px;
+            color: $direction-button-color;
+            cursor: pointer;
+        }
+        
+        .direction-up {
+            top: 5px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        
+        .direction-down {
+            bottom: 5px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        
+        .direction-left {
+            top: 50%;
+            left: 5px;
+            transform: translate(0, -50%);
+        }
+        
+        .direction-right {
+            top: 50%;
+            right: 5px;
+            transform: translate(0, -50%);
+        }
     }
 }
 

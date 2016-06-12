@@ -23,10 +23,9 @@ class CommandLineContainer extends Component {
         this.executeCommand = this.executeCommand.bind(this);
     }
     componentDidMount() {
-        this.props.actions.changeRoom(0);
+        this.props.actions.changeRoom(1);
     }
     executeCommand() {
-        console.log('?');
         this.props.actions.executeCommand(this.props.commandLine);
     }
     render() {
