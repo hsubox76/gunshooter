@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import DirectionButton from './DirectionButton';
 
 class RoomMap extends Component {
     render() {
@@ -20,12 +21,11 @@ class RoomMap extends Component {
                 if (!exit) {
                     return null;
                 }
-                const directionClassName = directionClassNames[index];
-                return (<span
-                            key={directionClassName}
-                            className={'direction-button direction-' 
-                                + directionClassName + ' fa fa-arrow-circle-'
-                                + directionClassName}></span>);
+                return (
+                    <DirectionButton
+                        key={index}
+                        destinationRoom={exit}
+                        directionClassName={directionClassNames[index]} />);
             })
             .filter((exit) => exit)
             .value();

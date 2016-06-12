@@ -110,7 +110,21 @@ body {
 }
 
 .log-container {
-    flex: 1 0 150px;
+    flex: 0 0 150px;
+    
+    .log-content {
+        overflow-y: scroll;
+        height: 115px;
+    }
+    
+    .log-header {
+        font-weight: bold;
+        margin: 5px;
+    }
+    
+    .log-entry-text {
+        margin: 5px;
+    }
 }
 
 .command-line-container {

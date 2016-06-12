@@ -8,9 +8,9 @@ const rooms = [
         title: 'A Tunnel',
         description: 'You are in a dark tunnel.',
         exits: {
-            n: 1,
-            e: 2,
-            w: 3,
+            n: 2,
+            e: 3,
+            w: 4,
             s: null,
             u: null,
             d: null
@@ -25,6 +25,32 @@ const rooms = [
             e: null,
             w: null,
             s: 1,
+            u: null,
+            d: null
+        }
+    },
+    {
+        id: 3,
+        title: 'A Dead End',
+        description: 'You are in a dark tunnel.',
+        exits: {
+            n: null,
+            e: null,
+            w: 1,
+            s: null,
+            u: null,
+            d: null
+        }
+    },
+    {
+        id: 4,
+        title: 'A Dead End',
+        description: 'You are in a dark tunnel.',
+        exits: {
+            n: null,
+            e: 1,
+            w: null,
+            s: null,
             u: null,
             d: null
         }

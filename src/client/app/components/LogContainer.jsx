@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Container from './Container';
 
@@ -9,17 +10,20 @@ function mapStateToProps(state) {
 }
 
 class LogContainer extends Component {
+    componentDidUpdate(prevProps, prevState) {
+        this.refs.logContent.scrollTop = this.refs.logContent.scrollHeight;
+    }
     render() {
         return (
             <Container
                 id="log"
                 displayName="Log">
-                <div className="log-content">
+                <div ref="logContent" className="log-content">
                     {_.map(this.props.log, (entry, index) => {
                       return (
                         <div key={index}>
-                            {entry.header || null}
-                            <div>{entry.text}</div>
+                            {(<div className="log-header">{entry.header}</div>) || null}
+                            <div className="log-entry-text">{entry.text}</div>
                         </div>);  
                     })}
                 </div>
