@@ -4,12 +4,6 @@ import DirectionButton from './DirectionButton';
 class RoomMap extends Component {
     render() {
         const exits = this.props.exits;
-        const directionClassNames = {
-            n: 'up',
-            e: 'right',
-            s: 'down',
-            w: 'left'  
-        };
         const style = {
             borderTopStyle: exits.n ? 'dotted' : 'solid',
             borderRightStyle: exits.e ? 'dotted' : 'solid',
@@ -17,15 +11,15 @@ class RoomMap extends Component {
             borderLeftStyle: exits.w ? 'dotted' : 'solid'
         };
         const directionButtons = _(exits)
-            .map((exit, index) => {
+            .map((exit, key) => {
                 if (!exit) {
                     return null;
                 }
                 return (
                     <DirectionButton
-                        key={index}
+                        key={key}
                         destinationRoom={exit}
-                        directionClassName={directionClassNames[index]} />);
+                        direction={key} />);
             })
             .filter((exit) => exit)
             .value();

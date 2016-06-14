@@ -12,10 +12,11 @@ var config = {
   debug: true,
   devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx']
+      modulesDirectories: ['node_modules', 'bower_components'],
+      extensions: ['', '.js', '.jsx']
   },
   entry: [
-      'webpack-dev-server/client?http://localhost:3000',
+      'webpack-dev-server/client?http://test.com:3000',
       'webpack/hot/only-dev-server',
       APP_DIR + '/index.jsx'
       ],
@@ -47,6 +48,9 @@ var config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ResolverPlugin(
+        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
+    ),
     extractCSS,
     extractSASS
   ],

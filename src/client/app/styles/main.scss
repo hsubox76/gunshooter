@@ -1,4 +1,4 @@
-$bg-color-1: #f6eee6;
+$bg-color-1: #eee;
 $bg-color-2: #fff;
 $action-word-color: cornflowerblue;
 $item-color: green;
@@ -6,7 +6,6 @@ $direction-button-color: #5DBB73;
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
     background-color: $bg-color-1;
     background-image: 
     radial-gradient(circle at 100% 150%, $bg-color-1 24%, $bg-color-2 25%, $bg-color-2 28%, $bg-color-1 29%, $bg-color-1 36%, $bg-color-2 36%, $bg-color-2 40%, transparent 40%, transparent),
@@ -17,29 +16,23 @@ body {
     background-size: 70px 35px;
 }
 
-.main-container {
-    width: 90%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
+.pure-g > div {
+    box-sizing: border-box;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 0 5px;
+.main-container {
+    max-width: 1500px;
+    margin: auto;
 }
 
 .container {
     border: 1px solid #999;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 5px 5px;
     background-color: #fff;
     
     .container-header {
-        font-size: 16px;
+        font-size: 1.2em;
         background-color: #4388A2;
         color: #fff;
         border-radius: 5px 5px 0 0;
@@ -52,11 +45,11 @@ body {
 }
 
 .right-column {
-    flex: 0 0 200px;
+    flex: 1 1 200px;
 }
 
 .center-column {
-    flex: 1 1 600px;
+    flex: 1 1 350px;
 }
 
 .room-container {
@@ -78,7 +71,7 @@ body {
         
         .direction-button {
             position: absolute;
-            font-size: 16px;
+            font-size: 1.2em;
             color: $direction-button-color;
             cursor: pointer;
         }
@@ -131,11 +124,13 @@ body {
     flex: 0 0 auto;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     
     .prompt-text {
         flex: 0 0 auto;
         border: 1px solid #aaa;
+        border-radius: 5px;
         padding: 5px;
         height: 15px;
         margin: 5px;
@@ -145,11 +140,11 @@ body {
     .button {
         flex: 0 0 auto;
         color: #fff;
-        font-size: 16px;
+        font-size: 1.2em;
         padding: 5px;
         border-radius: 5px;
-        height: 20px;
-        margin: 3px 3px 0 0;
+        height: 15px;
+        margin: 5px 5px 0 0;
         cursor: pointer;
     }
     
@@ -200,7 +195,7 @@ body {
     
     .inventory-item {
         color: $item-color;
-        font-size: 14px;
+        font-size: 1.2em;
         margin: 5px;
         border: 1px solid #eee;
         padding: 5px;
@@ -215,11 +210,11 @@ body {
 }
 
 .actions-container {
-    flex: 1 0 400px;
+    flex: 1 0 200px;
     
     .actions-word {
         color: $action-word-color;
-        font-size: 14px;
+        font-size: 1.2em;
         margin: 5px;
         border: 1px solid #eee;
         padding: 5px;

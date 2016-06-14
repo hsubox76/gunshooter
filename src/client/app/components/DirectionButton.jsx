@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { directions } from '../constants';
 import * as Actions from '../actions';
 
 function mapDispatchToActions(dispatch) {
@@ -10,21 +11,30 @@ function mapDispatchToActions(dispatch) {
 }
 
 class DirectionButton extends Component {
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+    onClick(room) {
+        const direction = this.props.direction;
+        this.props.actions.logText('> ' + directions[direction].displayName);
+        this.props.actions.changeRoom(room);
+    }
     render() {
-        const directionClassName = this.props.directionClassName;
+        const direction = this.props.direction;
         return (
             <span
-                onClick={_.wrap(this.props.destinationRoom, this.props.actions.changeRoom)}
+                onClick={_.wrap(this.props.destinationRoom, this.onClick)}
                 className={'direction-button direction-' 
-                    + directionClassName + ' fa fa-arrow-circle-'
-                    + directionClassName}></span>
+                    + directions[direction].className + ' fa fa-arrow-circle-'
+                    + directions[direction].className}></span>
         );
     }
 }
 
 DirectionButton.propTypes = {
     destinationRoom: PropTypes.number,
-    directionClassName: PropTypes.string
+    direction: PropTypes.string
 };
 
 export default connect(null, mapDispatchToActions)(DirectionButton);

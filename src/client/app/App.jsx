@@ -11,19 +11,18 @@ import CommandLineContainer from './components/CommandLineContainer';
 class App extends React.Component {
   render () {
     return (
-      <div className="main-container">
-        <div className="column left-column">
-          <InventoryContainer />
-          <div className="container map-container">map container</div>
-        </div>
-        <div className="column center-column">
+      <div className="main-container pure-u-1">
+        <div className="pure-u-0 pure-u-sm-0 pure-u-md-1-8 pure-u-lg-1-5"></div>
+        <div className="column pure-u-1 pure-u-sm-2-3 pure-u-md-1-2 pure-u-lg-2-5">
           <CommandLineContainer />
           <RoomContainer />
           <LogContainer />
         </div>
-        <div className="column right-column">
+        <div className="column pure-u-1 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <InventoryContainer />
           <ActionsContainer />
         </div>
+        <div className="pure-u-0 pure-u-sm-0 pure-u-md-1-8 pure-u-g-1-5"></div>
       </div>
     );
   }
