@@ -3,17 +3,11 @@ $bg-color-2: #fff;
 $action-word-color: cornflowerblue;
 $item-color: green;
 $direction-button-color: #5DBB73;
+$page-background-color: #558090;
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: $bg-color-1;
-    background-image: 
-    radial-gradient(circle at 100% 150%, $bg-color-1 24%, $bg-color-2 25%, $bg-color-2 28%, $bg-color-1 29%, $bg-color-1 36%, $bg-color-2 36%, $bg-color-2 40%, transparent 40%, transparent),
-    radial-gradient(circle at 0    150%, $bg-color-1 24%, $bg-color-2 25%, $bg-color-2 28%, $bg-color-1 29%, $bg-color-1 36%, $bg-color-2 36%, $bg-color-2 40%, transparent 40%, transparent),
-    radial-gradient(circle at 50%  100%, $bg-color-2 10%, $bg-color-1 11%, $bg-color-1 23%, $bg-color-2 24%, $bg-color-2 30%, $bg-color-1 31%, $bg-color-1 43%, $bg-color-2 44%, $bg-color-2 50%, $bg-color-1 51%, $bg-color-1 63%, $bg-color-2 64%, $bg-color-2 71%, transparent 71%, transparent),
-    radial-gradient(circle at 100% 50%, $bg-color-2 5%, $bg-color-1 6%, $bg-color-1 15%, $bg-color-2 16%, $bg-color-2 20%, $bg-color-1 21%, $bg-color-1 30%, $bg-color-2 31%, $bg-color-2 35%, $bg-color-1 36%, $bg-color-1 45%, $bg-color-2 46%, $bg-color-2 49%, transparent 50%, transparent),
-    radial-gradient(circle at 0    50%, $bg-color-2 5%, $bg-color-1 6%, $bg-color-1 15%, $bg-color-2 16%, $bg-color-2 20%, $bg-color-1 21%, $bg-color-1 30%, $bg-color-2 31%, $bg-color-2 35%, $bg-color-1 36%, $bg-color-1 45%, $bg-color-2 46%, $bg-color-2 49%, transparent 50%, transparent);
-    background-size: 70px 35px;
+    background-color: $page-background-color;
 }
 
 .pure-g > div {
@@ -23,6 +17,23 @@ body {
 .main-container {
     max-width: 1500px;
     margin: auto;
+    background-color: $bg-color-1;
+    background-image: 
+    radial-gradient(circle at 100% 150%, $bg-color-1 24%, $bg-color-2 25%, $bg-color-2 28%, $bg-color-1 29%, $bg-color-1 36%, $bg-color-2 36%, $bg-color-2 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, $bg-color-1 24%, $bg-color-2 25%, $bg-color-2 28%, $bg-color-1 29%, $bg-color-1 36%, $bg-color-2 36%, $bg-color-2 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, $bg-color-2 10%, $bg-color-1 11%, $bg-color-1 23%, $bg-color-2 24%, $bg-color-2 30%, $bg-color-1 31%, $bg-color-1 43%, $bg-color-2 44%, $bg-color-2 50%, $bg-color-1 51%, $bg-color-1 63%, $bg-color-2 64%, $bg-color-2 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, $bg-color-2 5%, $bg-color-1 6%, $bg-color-1 15%, $bg-color-2 16%, $bg-color-2 20%, $bg-color-1 21%, $bg-color-1 30%, $bg-color-2 31%, $bg-color-2 35%, $bg-color-1 36%, $bg-color-1 45%, $bg-color-2 46%, $bg-color-2 49%, transparent 50%, transparent),
+    radial-gradient(circle at 0    50%, $bg-color-2 5%, $bg-color-1 6%, $bg-color-1 15%, $bg-color-2 16%, $bg-color-2 20%, $bg-color-1 21%, $bg-color-1 30%, $bg-color-2 31%, $bg-color-2 35%, $bg-color-1 36%, $bg-color-1 45%, $bg-color-2 46%, $bg-color-2 49%, transparent 50%, transparent);
+    background-size: 70px 35px;
+    height: 100%;
+}
+
+.top-spacer {
+    height: 60px;    
+}
+
+.side-margin {
+    background-color: $page-background-color;
 }
 
 .container {
@@ -32,8 +43,8 @@ body {
     background-color: #fff;
     
     .container-header {
-        font-size: 1.2em;
-        background-color: #4388A2;
+        font-size: 1em;
+        background-color: $page-background-color;
         color: #fff;
         border-radius: 5px 5px 0 0;
         padding: 5px;
@@ -53,7 +64,7 @@ body {
 }
 
 .room-container {
-    flex: 1 0 200px;
+    height: 200px;
     
     .room-content {
         margin: 5px;
@@ -71,7 +82,7 @@ body {
         
         .direction-button {
             position: absolute;
-            font-size: 1.2em;
+            font-size: 1.5em;
             color: $direction-button-color;
             cursor: pointer;
         }
@@ -103,11 +114,12 @@ body {
 }
 
 .log-container {
-    flex: 0 0 150px;
+    height: 200px;
     
     .log-content {
         overflow-y: scroll;
-        height: 115px;
+        height: 160px;
+        font-size: 0.9em;
     }
     
     .log-header {
@@ -120,8 +132,17 @@ body {
     }
 }
 
+.command-line-area {
+    padding: 5px;
+    position: fixed;
+    height: 60px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    z-index: 100;
+}
+
 .command-line-container {
-    flex: 0 0 auto;
+    height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -129,6 +150,7 @@ body {
     
     .prompt-text {
         flex: 0 0 auto;
+        font-size: 1em;
         border: 1px solid #aaa;
         border-radius: 5px;
         padding: 5px;
@@ -137,10 +159,15 @@ body {
         background-color: #eee;
     }
     
+    .command-line-buttons {
+        flex: 0 0 auto;
+        display: flex;
+    }
+    
     .button {
         flex: 0 0 auto;
         color: #fff;
-        font-size: 1.2em;
+        font-size: 1.1em;
         padding: 5px;
         border-radius: 5px;
         height: 15px;
@@ -158,7 +185,7 @@ body {
     
     .command-line {
         flex-grow: 1;
-        font-size: 14px;
+        font-size: 1em;
         padding: 5px;
         height: 15px;
         margin: 5px;
@@ -186,16 +213,12 @@ body {
     }
 }
 
-.map-container {
-    flex: 1 0 200px;
-}
-
 .inventory-container {
-    flex: 1 0 200px;
+    height: 200px;
     
     .inventory-item {
         color: $item-color;
-        font-size: 1.2em;
+        font-size: 1.1em;
         margin: 5px;
         border: 1px solid #eee;
         padding: 5px;
@@ -210,11 +233,11 @@ body {
 }
 
 .actions-container {
-    flex: 1 0 200px;
+    height: 200px;
     
     .actions-word {
         color: $action-word-color;
-        font-size: 1.2em;
+        font-size: 1.1em;
         margin: 5px;
         border: 1px solid #eee;
         padding: 5px;
