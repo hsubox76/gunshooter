@@ -5,9 +5,14 @@ $item-color: green;
 $direction-button-color: #5DBB73;
 $page-background-color: #558090;
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: $page-background-color;
+    min-height: 100%;
 }
 
 .pure-g > div {
@@ -25,7 +30,7 @@ body {
     radial-gradient(circle at 100% 50%, $bg-color-2 5%, $bg-color-1 6%, $bg-color-1 15%, $bg-color-2 16%, $bg-color-2 20%, $bg-color-1 21%, $bg-color-1 30%, $bg-color-2 31%, $bg-color-2 35%, $bg-color-1 36%, $bg-color-1 45%, $bg-color-2 46%, $bg-color-2 49%, transparent 50%, transparent),
     radial-gradient(circle at 0    50%, $bg-color-2 5%, $bg-color-1 6%, $bg-color-1 15%, $bg-color-2 16%, $bg-color-2 20%, $bg-color-1 21%, $bg-color-1 30%, $bg-color-2 31%, $bg-color-2 35%, $bg-color-1 36%, $bg-color-1 45%, $bg-color-2 46%, $bg-color-2 49%, transparent 50%, transparent);
     background-size: 70px 35px;
-    height: 100%;
+    min-height: 100%;
 }
 
 .top-spacer {
@@ -72,6 +77,10 @@ body {
     
     .room-map {
         margin: 10px;
+    }
+    
+    .room-keyword {
+        color: $item-color;
     }
     
     .room-cube {

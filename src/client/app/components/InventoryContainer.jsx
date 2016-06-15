@@ -22,7 +22,7 @@ class InventoryContainer extends Component {
         this.onItemClick = this.onItemClick.bind(this);
     }
     onItemClick(itemWord) {
-        this.props.actions.addCommandWord(_.extend({}, itemWord, { wordType: 'item' }))
+        this.props.actions.addCommandWord(_.extend({}, itemWord, { wordType: 'item' }));
     }
     render() {
         return (

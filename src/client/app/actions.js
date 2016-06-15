@@ -4,7 +4,8 @@ export const ACTIONS = {
     CHANGE_ROOM: 'CHANGE_ROOM',
     LOG_COMMAND: 'LOG_COMMAND',
     LOG_TEXT: 'LOG_TEXT',
-    CLEAR_COMMAND_LINE: 'CLEAR_COMMAND_LINE'
+    CLEAR_COMMAND_LINE: 'CLEAR_COMMAND_LINE',
+    TAKE_ITEM: 'TAKE_ITEM'
 };
 
 export function addCommandWord(word) {
@@ -29,4 +30,8 @@ export function logText(text) {
 
 export function changeRoom(roomId) {
     return { type: ACTIONS.CHANGE_ROOM, roomId };
+};
+
+export function takeItem(item) {
+    return { type: ACTIONS.TAKE_ITEM, item };
 };

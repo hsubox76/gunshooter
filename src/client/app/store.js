@@ -8,6 +8,7 @@ const rooms = [
         id: 1,
         title: 'A Tunnel',
         description: 'You are in a dark tunnel.',
+        itemIds: [1003],
         exits: {
             n: 2,
             e: 3,
@@ -60,21 +61,30 @@ const rooms = [
 
 const items = [
     {
+        id: 1001,
         word: 'gun',
         article: 'a',
         description: 'It is a gun, the kind that you shoot people with.'
     },
     {
+        id: 1002,
         word: 'hat',
         article: 'a',
         description: 'It looks like a fedora.'
+    },
+    {
+        id: 1003,
+        word: 'piece of pipe',
+        article: 'a',
+        description: 'It is a broken-off piece of pipe.',
+        groundDescription: 'There is a broken-off |~1003:piece of pipe| lying on the ground.'
     }
 ];
 
 const startingActions = [
     {
         id: 1,
-        word: 'look',
+        word: 'look at',
         clickable: true,
         visible: true
     },
@@ -104,6 +114,8 @@ const initialStore = {
     currentRoomId: 1,
     actions: startingActions,
     inventory: [items[0], items[1]],
+    items: items,
+    roomItems: [],
     log: [],
     commandLine: []
 };
