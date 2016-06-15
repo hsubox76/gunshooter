@@ -81,6 +81,8 @@ body {
     
     .room-keyword {
         color: $item-color;
+        cursor: pointer;
+        font-weight: bold;
     }
     
     .room-cube {

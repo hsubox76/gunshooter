@@ -48,7 +48,11 @@ class CommandLineContainer extends Component {
             if (commandWord.word === 'look at') {
                 this.props.actions.logText(mainObject.description);
             } else if (commandWord.word === 'take') {
-                this.props.actions.takeItem(mainObject);
+                if (mainObject.id[0] === 'i') {
+                    this.props.actions.takeItem(mainObject);
+                } else {
+                    this.props.actions.logText('I can\'t take that.');
+                }
             } else {
                 this.props.actions.logText('Nothing happens.');
             }

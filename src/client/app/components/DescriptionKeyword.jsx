@@ -5,7 +5,9 @@ import * as Actions from '../actions';
 
 function mapStateToProps(state) {
     return {
-      roomItems: state.roomItems
+      currentRoom: state.currentRoom,
+      roomItems: state.roomItems,
+      commandLine: state.commandLine
     };
 }
 
@@ -19,8 +21,25 @@ class DescriptionKeyword extends Component {
     }
     
     onClick(wordId) {
-        const commandWord = _.find(this.props.roomItems, {id: wordId});
-        this.props.actions.addCommandWord(_.extend({}, commandWord, { wordType: 'item' }));
+        if (this.props.commandLine.length % 2 === 0) {
+            return;
+        }
+        let wordType, commandWord;
+        const currentRoom = this.props.currentRoom;
+        switch(wordId[0]) {
+            case 'i': 
+                wordType = 'item';
+                commandWord = _.find(this.props.roomItems, {id: wordId});
+                break;
+            case 'e':
+                wordType = 'environment';
+                commandWord = _.extend({}, currentRoom.environmentDescriptions[wordId], {id: wordId});
+                break;
+            default:
+                wordType = 'none';
+                commandWord = {};
+        }
+        this.props.actions.addCommandWord(_.extend({}, commandWord, { wordType: wordType }));
     }
     render() {
         return (
@@ -33,7 +52,7 @@ class DescriptionKeyword extends Component {
 
 DescriptionKeyword.propTypes = {
     word: PropTypes.string,
-    wordId: PropTypes.number
+    wordId: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToActions)(DescriptionKeyword);

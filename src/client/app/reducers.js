@@ -1,4 +1,6 @@
 import { ACTIONS } from './actions';
+import items from './data/items';
+import rooms from './data/rooms';
 
 export function commandLineReducer(state = [], action) {
   switch(action.type) {
@@ -13,7 +15,7 @@ export function commandLineReducer(state = [], action) {
   }  
 };
 
-export function logReducer(state = [], action, roomsById) {
+export function logReducer(state = [], action) {
     switch(action.type) {
         case ACTIONS.LOG_COMMAND:
             const commandLineText = _.map(action.commandLine, (commandLineWord, index) => {
@@ -25,26 +27,28 @@ export function logReducer(state = [], action, roomsById) {
         case ACTIONS.LOG_TEXT:
             return state.concat({text: action.text});
         case ACTIONS.CHANGE_ROOM:
-            const roomDescription = roomsById[action.roomId].description.replace(/\|\~.*?\:(.*?)\|/g, '$1');
-            return state.concat({header: roomsById[action.roomId].title, text: roomDescription});
+            const roomDescription = rooms[action.roomId].description.replace(/\|\~.*?\:(.*?)\|/g, '$1');
+            return state.concat({header: rooms[action.roomId].title, text: roomDescription});
+        case ACTIONS.TAKE_ITEM:
+            return state.concat({text: 'I pick up the ' + action.item.word + '.'});
         default:
             return state;
     }
 }
 
-export function currentRoomIdReducer(state = 0, action) {
+export function currentRoomReducer(state = {}, action) {
     switch(action.type) {
         case ACTIONS.CHANGE_ROOM:
-            return action.roomId;
+            return rooms[action.roomId];
         default:
             return state;
     }
 }
 
-export function roomItemsReducer(state = [], action, roomsById, items) {
+export function roomItemsReducer(state = [], action) {
     switch(action.type) {
         case ACTIONS.CHANGE_ROOM:
-            return _.map(roomsById[action.roomId].itemIds, (itemId) => {
+            return _.map(rooms[action.roomId].itemIds, (itemId) => {
                 return _.find(items, {id: itemId});
             });
         case ACTIONS.TAKE_ITEM:
@@ -67,9 +71,9 @@ export function inventoryReducer(state = [], action) {
 export function mainReducer(state = {}, action) {
     return _.extend({}, state, {
         commandLine: commandLineReducer(state.commandLine, action),
-        log: logReducer(state.log, action, state.roomsById),
-        currentRoomId: currentRoomIdReducer(state.currentRoomId, action),
-        roomItems: roomItemsReducer(state.roomItems, action, state.roomsById, state.items),
+        log: logReducer(state.log, action),
+        currentRoom: currentRoomReducer(state.currentRoom, action),
+        roomItems: roomItemsReducer(state.roomItems, action),
         inventory: inventoryReducer(state.inventory, action)
     });
 };
