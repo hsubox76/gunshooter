@@ -7,20 +7,19 @@ import DescriptionKeyword from './DescriptionKeyword';
 
 function mapStateToProps(state) {
  return {
-     roomItems: state.roomItems,
-     currentRoom: state.currentRoom
+     rooms: state.rooms,
+     items: state.items,
+     currentRoomId: state.currentRoomId
  };
 }
 
 class RoomContainer extends Component {
     render() {
-        const currentRoom = this.props.currentRoom;
+        const currentRoom = this.props.rooms[this.props.currentRoomId];
         let desc = [currentRoom.description];
         const itemDescriptions = _.each(currentRoom.itemIds, (itemId) => {
-            const item = _.find(this.props.roomItems, {id: itemId});
-            if (item) {
-                desc = desc.concat(item.groundDescription);
-            }
+            const item = this.props.items[itemId];
+            desc = desc.concat(item.groundDescription);
         });
         const fragments = desc.join(' ').split('|');
         const descriptionLines = _.map(fragments, (fragment, index) => {

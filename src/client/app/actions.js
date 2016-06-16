@@ -5,7 +5,8 @@ export const ACTIONS = {
     LOG_COMMAND: 'LOG_COMMAND',
     LOG_TEXT: 'LOG_TEXT',
     CLEAR_COMMAND_LINE: 'CLEAR_COMMAND_LINE',
-    TAKE_ITEM: 'TAKE_ITEM'
+    TAKE_ITEM: 'TAKE_ITEM',
+    DROP_ITEM: 'DROP_ITEM'
 };
 
 export function addCommandWord(word) {
@@ -34,4 +35,8 @@ export function changeRoom(roomId) {
 
 export function takeItem(item) {
     return { type: ACTIONS.TAKE_ITEM, item };
+};
+
+export function dropItem(item) {
+    return { type: ACTIONS.DROP_ITEM, item };
 };

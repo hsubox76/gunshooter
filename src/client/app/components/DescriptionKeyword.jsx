@@ -5,8 +5,9 @@ import * as Actions from '../actions';
 
 function mapStateToProps(state) {
     return {
-      currentRoom: state.currentRoom,
-      roomItems: state.roomItems,
+      currentRoomId: state.currentRoomId,
+      rooms: state.rooms,
+      items: state.items,
       commandLine: state.commandLine
     };
 }
@@ -25,11 +26,11 @@ class DescriptionKeyword extends Component {
             return;
         }
         let wordType, commandWord;
-        const currentRoom = this.props.currentRoom;
+        const currentRoom = this.props.rooms[this.props.currentRoomId];
         switch(wordId[0]) {
             case 'i': 
                 wordType = 'item';
-                commandWord = _.find(this.props.roomItems, {id: wordId});
+                commandWord = _.find(this.props.items, {id: wordId});
                 break;
             case 'e':
                 wordType = 'environment';

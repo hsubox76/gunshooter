@@ -4,10 +4,13 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import Container from './Container';
 import * as Actions from '../actions';
+import { ACTION_WORDS } from '../data/action-words';
+import * as utils from '../utils/execute-command';
 
 function mapStateToProps(state) {
  return {
-     commandLine: state.commandLine
+     commandLine: state.commandLine,
+     inventory: state.inventory
  };
 }
 
@@ -40,23 +43,8 @@ class CommandLineContainer extends Component {
         window.removeEventListener('resize', this.adjustWidth);
     }
     executeCommand() {
-        const commandLine = this.props.commandLine;
-        this.props.actions.logCommand(commandLine);
-        if (commandLine.length > 1) {
-            const commandWord = commandLine[0];
-            const mainObject = commandLine[1];
-            if (commandWord.word === 'look at') {
-                this.props.actions.logText(mainObject.description);
-            } else if (commandWord.word === 'take') {
-                if (mainObject.id[0] === 'i') {
-                    this.props.actions.takeItem(mainObject);
-                } else {
-                    this.props.actions.logText('I can\'t take that.');
-                }
-            } else {
-                this.props.actions.logText('Nothing happens.');
-            }
-        }
+        this.props.actions.logCommand(this.props.commandLine);
+        utils.executeCommand(this.props.commandLine, this.props.inventory, this.props.actions);
         this.props.actions.clearCommandLine();
     }
     render() {
@@ -84,7 +72,9 @@ class CommandLineContainer extends Component {
                         <div className="button backspace-button" onClick={this.props.actions.removeCommandWord}>
                             <span className="fa fa-undo"></span>
                         </div>
-                        <div className="button execute-button" onClick={this.executeCommand}>
+                        <div
+                            className="button execute-button"
+                            onClick={this.executeCommand}>
                             <span className="fa fa-thumbs-up"></span>
                         </div>
                     </div>

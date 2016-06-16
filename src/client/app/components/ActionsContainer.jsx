@@ -46,7 +46,7 @@ class ActionsContainer extends Component {
 }
 
 ActionsContainer.propTypes = {
-    actionWords: PropTypes.array,
+    actionWords: PropTypes.object,
     actions: PropTypes.object
 };
 

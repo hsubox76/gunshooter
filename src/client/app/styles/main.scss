@@ -2,6 +2,7 @@ $bg-color-1: #eee;
 $bg-color-2: #fff;
 $action-word-color: cornflowerblue;
 $item-color: green;
+$environment-color: purple;
 $direction-button-color: #5DBB73;
 $page-background-color: #558090;
 
@@ -215,6 +216,10 @@ body {
         
         .word-type-item {
             color: $item-color;
+        }
+        
+        .word-type-environment {
+            color: $environment-color;
         }
         
         &.empty {

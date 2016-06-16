@@ -5,7 +5,8 @@ const items = [
         id: 'i1001',
         word: 'gun',
         article: 'a',
-        description: 'It is a gun, the kind that you shoot people with.'
+        description: 'It is a gun, the kind that you shoot people with.',
+        groundDescription: 'There is a shooting |~i1001:gun| (for shooting) lying on the ground.'
     },
     {
         id: 'i1002',
