@@ -23,7 +23,7 @@ class LogContainer extends Component {
                       return (
                         <div key={index}>
                             {(<div className="log-header">{entry.header}</div>) || null}
-                            <div className="log-entry-text">{entry.text}</div>
+                            <div className={"log-entry-text " + entry.class}>{entry.text}</div>
                         </div>);  
                     })}
                 </div>

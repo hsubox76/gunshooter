@@ -21,7 +21,7 @@ export function logReducer(state = [], action, rooms) {
                     + (commandLineWord.preposition && index < action.commandLine.length - 1
                         ? ' ' + commandLineWord.preposition : '');
             }).join(' ');
-            return state.concat({text: '> ' + commandLineText});
+            return state.concat({text: '> ' + commandLineText, class: 'log-command'});
         case ACTIONS.LOG_TEXT:
             return state.concat({text: action.text});
         case ACTIONS.CHANGE_ROOM:

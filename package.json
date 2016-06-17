@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "dev": "webpack -d --watch",
-    "build": "webpack -p"
+    "build": "NODE_ENV=production webpack -p --config webpack.production.config.js"
   },
   "author": "Christina Holland",
   "license": "UNLICENSED",
@@ -33,7 +33,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "font-awesome": "^4.6.3",
+    "http-proxy": "^1.14.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   }

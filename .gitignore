@@ -1,4 +1,9 @@
 node_modules
 npm-debug.log
 .DS_Store
-src/client/public
+public
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

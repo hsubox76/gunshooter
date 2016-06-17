@@ -6,9 +6,6 @@ import rooms from './data/rooms';
 import items from './data/items';
 import actionWords from './data/action-words';
 
-const initialRoom = rooms[1];
-const initialInventory = [items[0], items[1]];
-
 const initialStore = {
     currentRoomId: 1,
     rooms: rooms,

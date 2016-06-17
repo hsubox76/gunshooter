@@ -17,7 +17,7 @@ class RoomContainer extends Component {
     render() {
         const currentRoom = this.props.rooms[this.props.currentRoomId];
         let desc = [currentRoom.description];
-        const itemDescriptions = _.each(currentRoom.itemIds, (itemId) => {
+        _.each(currentRoom.itemIds, (itemId) => {
             const item = this.props.items[itemId];
             desc = desc.concat(item.groundDescription);
         });

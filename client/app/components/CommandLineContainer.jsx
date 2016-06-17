@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import Container from './Container';
 import * as Actions from '../actions';
-import { ACTION_WORDS } from '../data/action-words';
 import * as utils from '../utils/execute-command';
 
 function mapStateToProps(state) {

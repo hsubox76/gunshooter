@@ -5,12 +5,12 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('font.css');
 var extractSASS = new ExtractTextPlugin('bundle.css');
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
+var BUILD_DIR = path.resolve(__dirname, 'public/build');
+var APP_DIR = path.resolve(__dirname, 'client/app');
 
 var config = {
   debug: true,
-  devtool: 'source-map',
+  devtool: 'eval',
   resolve: {
       modulesDirectories: ['node_modules', 'bower_components'],
       extensions: ['', '.js', '.jsx']
@@ -23,7 +23,7 @@ var config = {
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/build/'
   },
   module: {
       loaders: [
@@ -55,7 +55,7 @@ var config = {
     extractSASS
   ],
   sassLoader: {
-    includePaths: [path.resolve(__dirname, 'src/stylesheets')]
+    includePaths: [path.resolve(__dirname, 'src/client/app/styles')]
   }
 };
 

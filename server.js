@@ -1,20 +1,31 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var express = require('express');
+var path = require('path');
+var httpProxy = require('http-proxy');
 
-// var hostname = '127.0.0.1';
-var hostname = '192.168.20.47';
-var port = 3000;
+var proxy = httpProxy.createProxyServer();
+var app = express();
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  contentBase: "./src/client",
-  hot: true,
-  historyApiFallback: true
-}).listen(port, hostname, function (err, result) {
-  if (err) {
-    return console.log(err);
-  }
+var isProduction = process.env.NODE_ENV === 'production';
+var port = isProduction ? process.env.PORT : 3000;
+var publicPath = path.resolve(__dirname, 'public');
 
-  console.log('Listening at http://' + hostname + ':' + port + '/');
+app.use(express.static(publicPath));
+
+if (!isProduction) {
+    var bundle = require('./server/bundle.js');
+    bundle.bundle();
+    
+    app.all('/build/*', function (req, res) {
+        proxy.web(req, res, {
+            target: 'http://' + bundle.hostname + ':' + bundle.port
+        })
+    })
+}
+
+proxy.on('error', function (e) {
+    console.log('Could not connect to proxy.');
+});
+
+app.listen(port, function () {
+    console.log('Server running on port ' + port);
 });

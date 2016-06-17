@@ -142,6 +142,11 @@ body {
     .log-entry-text {
         margin: 5px;
     }
+    
+    .log-command {
+        font-style: italic;
+        color: #289;
+    }
 }
 
 .command-line-area {
