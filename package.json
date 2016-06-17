@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "dev": "webpack -d --watch",
-    "build": "NODE_ENV=production webpack -p --config webpack.production.config.js"
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack -p --config webpack.production.config.js"
   },
   "author": "Christina Holland",
   "license": "UNLICENSED",
