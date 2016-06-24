@@ -16,8 +16,7 @@ var config = {
       extensions: ['', '.js', '.jsx']
   },
   entry: [
-      'webpack-dev-server/client?http://test.com:3000',
-      'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?reload=true',
       APP_DIR + '/index.jsx'
       ],
   output: {
@@ -51,6 +50,9 @@ var config = {
     new webpack.ResolverPlugin(
         new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
     ),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
     extractCSS,
     extractSASS
   ],

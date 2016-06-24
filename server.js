@@ -1,31 +1,51 @@
-var express = require('express');
-var path = require('path');
-var httpProxy = require('http-proxy');
 
-var proxy = httpProxy.createProxyServer();
-var app = express();
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack.config.js');
+const roomsById = require('./server/data/rooms.js');
 
-var isProduction = process.env.NODE_ENV === 'production';
-var port = isProduction ? process.env.PORT : 3000;
-var publicPath = path.resolve(__dirname, 'public');
+const isDeveloping = process.env.NODE_ENV !== 'production';
+const port = isDeveloping ? 3000 : process.env.PORT;
+const app = express();
 
-app.use(express.static(publicPath));
+if (isDeveloping) {
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    hot: true,
+    historyApiFallback: true,
+    contentBase: 'public',
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
+    }
+  });
 
-if (!isProduction) {
-    var bundle = require('./server/bundle.js');
-    bundle.bundle();
-    
-    app.all('/build/*', function (req, res) {
-        proxy.web(req, res, {
-            target: 'http://' + bundle.hostname + ':' + bundle.port
-        })
-    })
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
+  app.get('/room/:roomId', function (req, res) {
+    res.send(JSON.stringify(roomsById[req.params.roomId]));
+  });
+  app.get('*', function response(req, res) {
+      res.sendFile(path.join(__dirname, 'client/index.html'));
+  });
+} else {
+  app.use(express.static(__dirname + '/public'));
+  app.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+  });
 }
 
-proxy.on('error', function (e) {
-    console.log('Could not connect to proxy.');
-});
-
-app.listen(port, function () {
-    console.log('Server running on port ' + port);
+app.listen(port, 'localhost', function onStart(err) {
+  if (err) {
+    console.log(err);
+  }
+  console.info('==> 🌎 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
 });

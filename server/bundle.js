@@ -3,7 +3,7 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./../webpack.config');
 
 // var hostname = '127.0.0.1';
-var hostname = '192.168.20.47';
+var hostname = 'localhost';
 var port = 8080;
 
 function bundle () {
@@ -21,7 +21,6 @@ function bundle () {
 
   var bundler = new WebpackDevServer(compiler, {
     publicPath: config.output.publicPath,
-    contentBase: "./public",
     hot: true,
     quiet: false,
     noInfo: true,
@@ -29,11 +28,14 @@ function bundle () {
       colors: true
     },
     historyApiFallback: true
-  }).listen(port, hostname, function (err, result) {
+  });
+  
+  bundler.listen(port, hostname, function (err, result) {
     if (err) {
       return console.log(err);
     }
-    console.log('Listening at http://' + hostname + ':' + port + '/');
+    console.log('Bundling project, please wait');
+    console.log('Webpack Dev Server listening at http://' + hostname + ':' + port + '/');
   });
 }
 

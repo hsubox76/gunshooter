@@ -9,6 +9,19 @@ import ActionsContainer from './components/ActionsContainer';
 import CommandLineContainer from './components/CommandLineContainer';
 
 class App extends React.Component {
+  componentDidMount () {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/room/1', true);
+    
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        console.log(data);
+      }
+    }
+    
+    xhr.send();
+  }
   render () {
     return (
       <div className="main-unit pure-u-1">
