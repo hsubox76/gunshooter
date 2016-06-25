@@ -5,7 +5,7 @@ import * as Actions from '../actions';
 
 function mapStateToProps(state) {
     return {
-      currentRoomId: state.currentRoomId,
+      currentRoom: state.currentRoom,
       rooms: state.rooms,
       items: state.items,
       commandLine: state.commandLine
@@ -26,7 +26,7 @@ class DescriptionKeyword extends Component {
             return;
         }
         let wordType, commandWord;
-        const currentRoom = this.props.rooms[this.props.currentRoomId];
+        const currentRoom = this.props.currentRoom;
         switch(wordId[0]) {
             case 'i': 
                 wordType = 'item';

@@ -34,7 +34,6 @@ class CommandLineContainer extends Component {
         this.setState({width: width});
     }
     componentDidMount() {
-        this.props.actions.changeRoom(1);
         this.adjustWidth();
         window.addEventListener('resize', this.adjustWidth);
     }

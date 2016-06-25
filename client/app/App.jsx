@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import './styles/main.scss';
 import 'font-awesome/css/font-awesome.css';
 import LogContainer from './components/LogContainer';
@@ -8,21 +10,26 @@ import InventoryContainer from './components/InventoryContainer';
 import ActionsContainer from './components/ActionsContainer';
 import CommandLineContainer from './components/CommandLineContainer';
 
+import * as Actions from './actions';
+
+function mapStateToProps(state) {
+ return {
+     gameState: state.gameState
+ };
+}
+
+function mapDispatchToActions(dispatch) {
+    return { actions: bindActionCreators(Actions, dispatch) };
+}
+
 class App extends React.Component {
   componentDidMount () {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/room/1', true);
-    
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        console.log(data);
-      }
-    }
-    
-    xhr.send();
+    this.props.actions.initAll();
   }
   render () {
+    if (!this.props.gameState.loaded) {
+      return null;
+    }
     return (
       <div className="main-unit pure-u-1">
         <div className="main-container pure-g">
@@ -48,4 +55,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToActions)(App);

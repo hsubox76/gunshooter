@@ -1,4 +1,4 @@
-import _ from 'lodash';
+var _ = require('lodash');
 
 const items = [
     {
@@ -25,4 +25,4 @@ const items = [
 
 const itemsById = _.keyBy(items, 'id');
 
-export default itemsById;
+module.exports = itemsById;

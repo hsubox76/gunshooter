@@ -1,4 +1,5 @@
 import { ACTION_WORDS } from '../data/action-words';
+import _ from 'lodash';
 
 function executeTake(mainObject, inventory, actions) {
     if (!mainObject) {
@@ -6,7 +7,7 @@ function executeTake(mainObject, inventory, actions) {
         return;
     }
     if (mainObject.id[0] === 'i') {
-        if (_.find(inventory, {id: mainObject.id})) {
+        if (_.includes(inventory, mainObject.id)) {
             actions.logText('I already have that.');
         } else {
             actions.takeItem(mainObject);
@@ -22,7 +23,7 @@ function executeDrop(mainObject, inventory, actions) {
         return;
     }
     if (mainObject.id[0] === 'i') {
-        if (_.find(inventory, {id: mainObject.id})) {
+        if (_.includes(inventory, mainObject.id)) {
             actions.dropItem(mainObject);
         } else {
             actions.logText('I don\'t have that.');

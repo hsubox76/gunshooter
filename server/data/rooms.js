@@ -5,7 +5,7 @@ const rooms = [
         id: 1,
         title: 'A Hedge Maze',
         description: 'I am in a |~e5001:hedge| maze, with paths leading in several directions.',
-        itemIds: ['i1003'],
+        itemIds: ['i1003', 'i1002'],
         environmentDescriptions: {
             'e5001': {word: 'hedge', description: 'It looks like some species of juniper.'}
         },

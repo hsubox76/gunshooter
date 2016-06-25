@@ -8,6 +8,7 @@ import * as Actions from '../actions';
 function mapStateToProps(state) {
  return {
      inventory: state.inventory,
+     items: state.items,
      commandLine: state.commandLine
  };
 }
@@ -25,11 +26,15 @@ class InventoryContainer extends Component {
         this.props.actions.addCommandWord(_.extend({}, itemWord, { wordType: 'item' }));
     }
     render() {
+        if (!this.props.items) {
+            return null;
+        }
         return (
             <Container
                 id="inventory"
                 displayName="Inventory">
-                {_.map(this.props.inventory, (item) => {
+                {_.map(this.props.inventory, (itemId) => {
+                    const item = this.props.items[itemId];
                     const isInactive = this.props.commandLine.length % 2 === 0;
                     return (
                         <div

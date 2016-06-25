@@ -2,18 +2,17 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { mainReducer } from './reducers';
 import _ from 'lodash';
-import rooms from './data/rooms';
-import items from './data/items';
 import actionWords from './data/action-words';
 
 const initialStore = {
-    currentRoomId: 1,
-    rooms: rooms,
-    items: items,
+    currentRoom: null,
+    gameState: {},
     actions: actionWords,
-    inventory: [items['i1001'], items['i1002']],
+    inventory: ['i1001', 'i1002'],
+    items: null,
     log: [],
-    commandLine: []
+    commandLine: [],
+    roomChanges: {}
 };
 
 export default createStore(mainReducer, initialStore, applyMiddleware(thunk));
