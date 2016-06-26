@@ -6,13 +6,17 @@ const items = [
         word: 'gun',
         article: 'a',
         description: 'It is a gun, the kind that you shoot people with.',
+        bulletCount: 1,
+        shoot: 'Shoot the gun with the gun? That would be a neat trick.',
         groundDescription: 'There is a shooting |~i1001:gun| (for shooting) lying on the ground.'
     },
     {
         id: 'i1002',
         word: 'hat',
         article: 'a',
-        description: 'It looks like a fedora.'
+        description: 'It looks like a fedora.',
+        shoot: 'I shoot a neat little hole through the hat.',
+        groundDescription: 'There is a shabby |~i1002: hat| lying on the ground.'
     },
     {
         id: 'i1003',

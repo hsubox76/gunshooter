@@ -24,8 +24,6 @@ function mapDispatchToActions(dispatch) {
 }
 
 class RoomContainer extends Component {
-    componentDidMount() {
-    }
     render() {
         const currentRoom = this.props.currentRoom;
         let desc = [currentRoom.description];

@@ -108,12 +108,14 @@ export function gameStateReducer(state = {}, action) {
 export function singleRoomChangeReducer(state = {}, action) {
     switch(action.type) {
         case ACTIONS.TAKE_ITEM:
+            const itemIds = action.currentRoom.itemIds;
+            const itemIndex = _.findIndex(itemIds, itemId => itemId === action.item.id);
             return _.extend({}, state, {
-                removedItems: _.extend({}, state.removedItems, { [action.item.id] : action.item.id })
+                itemIds: [...itemIds.slice(0, itemIndex), ...itemIds.slice(itemIndex + 1)]
             });
         case ACTIONS.DROP_ITEM:
             return _.extend({}, state, {
-                addedItems: _.extend({}, state.addedItems, { [action.item.id] : action.item.id })
+                itemIds: action.currentRoom.itemIds.concat(action.item.id)
             });
         default:
             return state;

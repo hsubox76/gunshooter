@@ -33,6 +33,22 @@ function executeDrop(mainObject, inventory, actions) {
     }
 }
 
+function executeShoot(mainObject, inventory, actions) {
+    if (!mainObject) {
+        actions.logText("Shoot what?");
+        return;
+    }
+    if (mainObject.id[0] === 'i') {
+        if (_.includes(inventory, mainObject.id)) {
+            actions.dropItem(mainObject);
+        } else {
+            actions.logText('I try not to shoot things I\'m holding.');
+        }
+    } else {
+        actions.logText('I can\'t take that.');
+    }
+}
+
 export function executeCommand(commandLine, inventory, actions) {
     if (commandLine.length > 0) {
         const commandWord = commandLine[0];

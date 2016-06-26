@@ -76,23 +76,14 @@ export function changeRoom(roomId) {
         api.fetchRoom(roomId)
             .then((data) => {
                 dispatch(leaveRoom(oldRoom));
-                dispatch(enterRoom(data));
-                const currentRoomChanges = roomChanges[data.id];
-                if (currentRoomChanges) {
-                    if (currentRoomChanges.addedItems) {
-                        data.itemIds = data.itemIds.concat(_.keys(currentRoomChanges.addedItems));
-                    }
-                    if (currentRoomChanges.removedItems) {
-                        data.itemIds = _.filter(data.itemIds, (itemId) => {
-                            return !currentRoomChanges.removedItems[itemId]
-                        });
-                    }
-                }
-                return data;
+                const currentRoomChanges = roomChanges[data.id] || {};
+                const room = _.extend({}, data, currentRoomChanges);
+                dispatch(enterRoom(room));
+                return room;
             })
-            .then((data) => {
-                if (data.itemIds) {
-                    return api.fetchItems(data.itemIds);
+            .then((room) => {
+                if (room.itemIds) {
+                    return api.fetchItems(room.itemIds);
                 }
             })
             .then((items) => {
@@ -110,6 +101,12 @@ export function initAll() {
     return (dispatch, getState) => {
         const inventory = getState().inventory;
         dispatch(changeRoom(1));
+        dispatch(logText("He picked us all for different reasons. Some were ninjas, assassins, "
+            + "ninja assassins, ex-MMA guys, soldiers, cyborgs - I think I even saw a werewolf. "
+            + "He picked me because I'm good at shooting."));
+        dispatch(logText("He kidnapped us all and dumped us on his private island. The sedative kicked in "
+            + "while he was explaining so I'm a little fuzzy but I think he means to hunt us all for sport. "
+            + "When I wake up, I find myself in a hedge maze."));
         api.fetchItems(inventory)
             .then((items) => {
                 dispatch(addItems(items));

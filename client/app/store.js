@@ -12,7 +12,8 @@ const initialStore = {
     items: null,
     log: [],
     commandLine: [],
-    roomChanges: {}
+    roomChanges: {},
+    itemChanges: {}
 };
 
 export default createStore(mainReducer, initialStore, applyMiddleware(thunk));
