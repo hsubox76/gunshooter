@@ -33,39 +33,65 @@ function executeDrop(mainObject, inventory, actions) {
     }
 }
 
-function executeShoot(mainObject, inventory, actions) {
+function executeShoot(mainObject, inventory, actions, gunChanges) {
     if (!mainObject) {
         actions.logText("Shoot what?");
         return;
     }
+    if (gunChanges && gunChanges.bulletCount === 0) {
+        actions.logText("I'm out of bullets.");
+        return;
+    }
     if (mainObject.id[0] === 'i') {
         if (_.includes(inventory, mainObject.id)) {
-            actions.dropItem(mainObject);
-        } else {
             actions.logText('I try not to shoot things I\'m holding.');
+        } else {
+            actions.decrementBullets();
+            actions.logText('I shoot the ' + mainObject.word + '.');
+            if (gunChanges && gunChanges.bulletCount === 1) {
+                actions.logText('That was my last bullet.');
+            }
         }
     } else {
-        actions.logText('I can\'t take that.');
+        actions.decrementBullets();
+        actions.logText('I shoot the ' + mainObject.word + '.');
     }
 }
 
-export function executeCommand(commandLine, inventory, actions) {
+function executeLook(mainObject, actions) {
+    if (!mainObject) {
+        actions.logText("Look at what?");
+        return;
+    }
+    if (mainObject.id === 'i1001') {
+        actions.logText(mainObject.description);
+        const bulletWord = mainObject.bulletCount === 1 ? 'bullet' : 'bullets';
+        actions.logText('It has ' + mainObject.bulletCount + ' ' + bulletWord + ' left.');
+    } else {
+        actions.logText(mainObject.description);
+    }
+}
+
+export function executeCommand(commandLine, inventory, actions, itemChanges) {
     if (commandLine.length > 0) {
         const commandWord = commandLine[0];
         const mainObject = commandLine[1];
+        let updatedMainObject = mainObject;
+        if (mainObject.id[0] === 'i') {
+            updatedMainObject = _.extend({}, mainObject, itemChanges[mainObject.id]);
+        }
         switch(commandWord.word) {
             case ACTION_WORDS.LOOK:
-                if (commandLine.length === 2) {
-                    actions.logText(mainObject.description);
-                } else {
-                    actions.logText("Look at what?");
-                }
+                executeLook(updatedMainObject, actions);
                 break;
             case ACTION_WORDS.TAKE:
-                executeTake(mainObject, inventory, actions);
+                executeTake(updatedMainObject, inventory, actions);
                 break;
             case ACTION_WORDS.DROP:
-                executeDrop(mainObject, inventory, actions);
+                executeDrop(updatedMainObject, inventory, actions);
+                break;
+            case ACTION_WORDS.SHOOT:
+                executeShoot(updatedMainObject, inventory, actions, itemChanges['i1001']);
                 break;
             default:
                 actions.logText('Nothing happens.');

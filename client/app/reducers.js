@@ -105,7 +105,7 @@ export function gameStateReducer(state = {}, action) {
     }
 }
 
-export function singleRoomChangeReducer(state = {}, action) {
+export function roomChangeReducer(state = {}, action) {
     switch(action.type) {
         case ACTIONS.TAKE_ITEM:
             const itemIds = action.currentRoom.itemIds;
@@ -127,7 +127,23 @@ export function roomChangesReducer(state = {}, action) {
         case ACTIONS.DROP_ITEM:
         case ACTIONS.TAKE_ITEM:
             return _.extend({}, state, {
-                [action.currentRoom.id] : singleRoomChangeReducer(state[action.currentRoom.id], action)
+                [action.currentRoom.id] : roomChangeReducer(state[action.currentRoom.id], action)
+            });
+        default:
+            return state;
+    }
+}
+
+export function itemChangesReducer(state = {}, action) {
+    switch(action.type) {
+        case ACTIONS.DECREMENT_BULLETS:
+            const currentBullets = state['i1001'] && state['i1001'].bulletCount
+                ? state['i1001'].bulletCount
+                : action.items['i1001'].bulletCount;
+            return _.extend({}, state, {
+                ['i1001'] : _.extend({},
+                    state['i1001'],
+                    { bulletCount: Math.max(currentBullets - 1, 0) })
             });
         default:
             return state;
@@ -141,8 +157,8 @@ export function mainReducer(state = {}, action) {
         log: logReducer(state.log, action, state.rooms),
         currentRoom: currentRoomReducer(state.currentRoom, action),
         items: itemsReducer(state.items, action),
-        // roomItems: roomItemsReducer(state.roomItems, action, items),
         inventory: inventoryReducer(state.inventory, action),
-        roomChanges: roomChangesReducer(state.roomChanges, action)
+        roomChanges: roomChangesReducer(state.roomChanges, action),
+        itemChanges: itemChangesReducer(state.itemChanges, action)
     });
 };

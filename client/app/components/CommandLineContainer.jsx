@@ -9,7 +9,8 @@ import * as utils from '../utils/execute-command';
 function mapStateToProps(state) {
  return {
      commandLine: state.commandLine,
-     inventory: state.inventory
+     inventory: state.inventory,
+     itemChanges: state.itemChanges
  };
 }
 
@@ -42,7 +43,7 @@ class CommandLineContainer extends Component {
     }
     executeCommand() {
         this.props.actions.logCommand(this.props.commandLine);
-        utils.executeCommand(this.props.commandLine, this.props.inventory, this.props.actions);
+        utils.executeCommand(this.props.commandLine, this.props.inventory, this.props.actions, this.props.itemChanges);
         this.props.actions.clearCommandLine();
     }
     render() {

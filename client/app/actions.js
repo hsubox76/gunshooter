@@ -12,7 +12,8 @@ export const ACTIONS = {
     ENTER_ROOM: 'ENTER_ROOM',
     ADD_ITEMS: 'ADD_ITEMS',
     SET_GAME_LOADED: 'SET_GAME_LOADED',
-    SET_ROOM_LOADED: 'SET_ROOM_LOADED'
+    SET_ROOM_LOADED: 'SET_ROOM_LOADED',
+    DECREMENT_BULLETS: 'DECREMENT_BULLETS'
 };
 
 export function addCommandWord(word) {
@@ -67,6 +68,13 @@ export function setRoomLoaded() {
 
 export function setGameLoaded() {
     return { type: ACTIONS.SET_GAME_LOADED };
+}
+
+export function decrementBullets(count = 1) {
+    return (dispatch, getState) => {
+        const items = getState().items;
+        dispatch({ type: ACTIONS.DECREMENT_BULLETS, items, count });
+    }
 }
 
 export function changeRoom(roomId) {
