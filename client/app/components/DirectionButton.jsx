@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { directions } from '../constants';
-import * as Actions from '../actions';
+import { directions } from '../data/constants';
+import * as Actions from '../actions/actions';
 
 function mapStateToProps(state) {
     return {

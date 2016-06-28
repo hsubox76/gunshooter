@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { mainReducer } from './reducers';
+import { mainReducer } from '../reducers/reducers';
 import _ from 'lodash';
-import actionWords from './data/action-words';
+import actionWords from '../data/action-words';
 
 const initialStore = {
     currentRoom: null,

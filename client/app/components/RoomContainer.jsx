@@ -6,7 +6,7 @@ import RoomMap from './RoomMap';
 import _ from 'lodash';
 import DescriptionKeyword from './DescriptionKeyword';
 
-import Actions from '../actions';
+import Actions from '../actions/actions';
 
 function mapStateToProps(state) {
  return {

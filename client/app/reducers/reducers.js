@@ -1,4 +1,4 @@
-import { ACTIONS } from './actions';
+import { ACTIONS } from '../actions/actions';
 
 export function commandLineReducer(state = [], action) {
   switch(action.type) {
@@ -65,23 +65,12 @@ export function inventoryReducer(state = [], action) {
         case ACTIONS.TAKE_ITEM:
             return state.concat(action.item.id);
         case ACTIONS.DROP_ITEM:
-            const itemIndex = _.findIndex(state, item => action.item.id);
+            const itemIndex = _.findIndex(state, item => { return item === action.item.id });
             return [...state.slice(0, itemIndex), ...state.slice(itemIndex + 1)];
         default:
             return state;
     }
 }
-
-
-// export function roomsReducer(state = {}, action, currentRoomId) {
-//     switch(action.type) {
-//         case ACTIONS.TAKE_ITEM:
-//         case ACTIONS.DROP_ITEM:
-//             return _.extend({}, state, { [currentRoomId]: roomReducer(state[currentRoomId], action) });
-//         default:
-//             return state;
-//     }
-// }
 
 export function itemsReducer(state = {}, action) {
     switch(action.type) {
@@ -115,7 +104,8 @@ export function roomChangeReducer(state = {}, action) {
             });
         case ACTIONS.DROP_ITEM:
             return _.extend({}, state, {
-                itemIds: action.currentRoom.itemIds.concat(action.item.id)
+                itemIds: action.currentRoom.itemIds
+                    ? action.currentRoom.itemIds.concat(action.item.id) : [action.item.id]
             });
         default:
             return state;

@@ -1,4 +1,4 @@
-import * as api from './api';
+import * as api from '../api/api';
 
 export const ACTIONS = {
     ADD_COMMAND_WORD: 'ADD_COMMAND_WORD',

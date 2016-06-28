@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import './styles/main.scss';
+import '../styles/main.scss';
 import 'font-awesome/css/font-awesome.css';
-import LogContainer from './components/LogContainer';
-import RoomContainer from './components/RoomContainer';
-import InventoryContainer from './components/InventoryContainer';
-import ActionsContainer from './components/ActionsContainer';
-import CommandLineContainer from './components/CommandLineContainer';
+import LogContainer from './LogContainer';
+import RoomContainer from './RoomContainer';
+import InventoryContainer from './InventoryContainer';
+import ActionsContainer from './ActionsContainer';
+import CommandLineContainer from './CommandLineContainer';
 
-import * as Actions from './actions';
+import * as Actions from '../actions/actions';
 
 function mapStateToProps(state) {
  return {

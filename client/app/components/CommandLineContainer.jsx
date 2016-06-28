@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import Container from './Container';
-import * as Actions from '../actions';
-import * as utils from '../utils/execute-command';
+import * as Actions from '../actions/actions';
+import * as CommandActions from '../actions/command-actions';
 
 function mapStateToProps(state) {
  return {
@@ -16,7 +16,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(Actions, dispatch),
+        commandActions: bindActionCreators(CommandActions, dispatch)
     }
 }
 
@@ -43,7 +44,7 @@ class CommandLineContainer extends Component {
     }
     executeCommand() {
         this.props.actions.logCommand(this.props.commandLine);
-        utils.executeCommand(this.props.commandLine, this.props.inventory, this.props.actions, this.props.itemChanges);
+        this.props.commandActions.executeCommand(this.props.commandLine, this.props.inventory, this.props.actions, this.props.itemChanges);
         this.props.actions.clearCommandLine();
     }
     render() {
