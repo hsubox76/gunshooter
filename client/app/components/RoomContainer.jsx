@@ -41,12 +41,10 @@ class RoomContainer extends Component {
             return (<DescriptionKeyword key={index} word={keyword} wordId={keywordId} />);
         });
         const innerContent = this.props.roomLoaded ? (
-            <div>
+            <div className="room-content">
                 <RoomMap exits={currentRoom.exits} />
-                <div className="room-content">
-                    <div>
-                        {descriptionLines}
-                    </div>
+                <div className="room-text">
+                    {descriptionLines}
                 </div>
             </div>
         ) : null;

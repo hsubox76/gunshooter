@@ -57,27 +57,22 @@ body {
     }
 }
 
-.left-column {
-    flex: 0 0 200px;
-}
-
-.right-column {
-    flex: 1 1 200px;
-}
-
-.center-column {
-    flex: 1 1 350px;
-}
-
 .room-container {
-    height: 200px;
+    // height: 200px;
     
     .room-content {
-        margin: 5px;
+        display: flex;
+    }
+    
+    .room-text {
+        padding: 10px;
+        span {
+            letter-spacing: normal;
+        }
     }
     
     .room-map {
-        margin: 10px;
+        padding: 10px;
     }
     
     .room-keyword {
@@ -91,6 +86,7 @@ body {
         border: 2px solid #777;
         width: 80px;
         height: 80px;
+        letter-spacing: normal;
         
         .direction-button {
             position: absolute;
@@ -235,7 +231,7 @@ body {
 }
 
 .inventory-container {
-    height: 200px;
+    // height: 200px;
     
     .inventory-item {
         color: $item-color;
@@ -254,7 +250,7 @@ body {
 }
 
 .actions-container {
-    height: 200px;
+    // height: 200px;
     
     .actions-word {
         color: $action-word-color;

@@ -38,9 +38,11 @@ class App extends React.Component {
             <div className="pure-g">
               <CommandLineContainer />
               <div className="top-spacer pure-u-1"></div>
+              <div className="column pure-u-1">
+                <LogContainer />
+              </div>
               <div className="column pure-u-1 pure-u-sm-2-3 pure-u-md-2-3 pure-u-lg-2-3">
                 <RoomContainer />
-                <LogContainer />
               </div>
               <div className="column pure-u-1 pure-u-sm-1-3 pure-u-md-1-3 pure-u-lg-1-3">
                 <InventoryContainer />
