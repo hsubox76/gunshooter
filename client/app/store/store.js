@@ -4,6 +4,9 @@ import { mainReducer } from '../reducers/reducers';
 import _ from 'lodash';
 import actionWords from '../data/action-words';
 
+
+// test
+
 const initialStore = {
     currentRoom: null,
     gameState: {},
